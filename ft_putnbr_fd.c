@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 13:21:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/07 13:16:43 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/05 13:25:04 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/05 14:32:48 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char		*ptr_dest;
-	const unsigned char	*ptr_src;
-	size_t				i;
+	char			output[12];
+	unsigned int	tmp;
+	int				sign;
+	unsigned int	i;
 
-	if (n > 0)
+	sign = 1;
+	if (n < 0)
+		sign = -1;
+	i = 10;
+	tmp = (unsigned int) n * sign;
+	output[11] = '\0';
+	while (tmp > 9)
 	{
-		i = 0;
-		ptr_dest = (unsigned char *) dest;
-		ptr_src = (const unsigned char *) src;
-		while (i < n)
-		{
-			ptr_dest[i] = ptr_src[i];
-			i++;
-		}
+		output[i] = (char)(tmp % 10) + '0';
+		tmp = tmp / 10;
+		i--;
 	}
-	return (dest);
+	output[i] = (char)(tmp % 10) + '0';
+	if (n < 0)
+	{
+		i--;
+		output[i] = '-';
+	}
+	ft_putstr_fd(&output[i], fd);
 }

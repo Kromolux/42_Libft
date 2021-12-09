@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 13:21:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/07 13:16:43 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/07 13:24:52 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/07 13:41:16 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char		*ptr_dest;
-	const unsigned char	*ptr_src;
-	size_t				i;
+	void	*substring;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	if (n > 0)
-	{
-		i = 0;
-		ptr_dest = (unsigned char *) dest;
-		ptr_src = (const unsigned char *) src;
-		while (i < n)
-		{
-			ptr_dest[i] = ptr_src[i];
-			i++;
-		}
-	}
-	return (dest);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	substring = malloc(s1_len + s2_len + 1);
+	if (!substring)
+		return (0);
+	ft_memcpy(substring, (const void *) s1, s1_len);
+	ft_memcpy(&substring[s1_len + 1], (const void *) s2, s2_len + 1);	
+	return ((char *) substring);
 }
