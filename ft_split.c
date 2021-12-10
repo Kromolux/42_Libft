@@ -6,13 +6,13 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/09 11:18:07 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/10 12:40:58 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int analyze_str(char const *s, char c);
+static unsigned int	analyze_str(char const *s, char c, unsigned int *entries);
 static void			split_str(char const *s, char c, char **array);
 
 char	**ft_split(char const *s, char c)
@@ -24,7 +24,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	entries = 0;
-	size = analyze_str(s,c, &entries);
+	size = analyze_str(s, c, &entries);
 	array = (char **) malloc(entries + 1);
 	while (i < entries)
 	{
@@ -32,13 +32,13 @@ char	**ft_split(char const *s, char c)
 		i++;
 	}
 	if (!array)
-		return(0);
-	array[entries][0] = NULL;
+		return (0);
+	array[entries][0] = 0;
 	split_str(s, c, array);
 	return (array);
 }
 
-static unsigned int analyze_str(char const *s, char c, unsigned int *entries)
+static unsigned int	analyze_str(char const *s, char c, unsigned int *entries)
 {
 	unsigned int	i;
 	unsigned int	count;
@@ -54,7 +54,7 @@ static unsigned int analyze_str(char const *s, char c, unsigned int *entries)
 			if (count > max)
 				max = count;
 			count = 0;
-			*entries++;
+			*entries += 1;
 		}
 		i++;
 		count++;
@@ -62,7 +62,7 @@ static unsigned int analyze_str(char const *s, char c, unsigned int *entries)
 	return (max + 1);
 }
 
-static void			split_str(char const *s, char c, char **array)
+static void	split_str(char const *s, char c, char **array)
 {
 	unsigned int	i;
 	unsigned int	start;
@@ -75,11 +75,11 @@ static void			split_str(char const *s, char c, char **array)
 	{
 		if (s[i] == c)
 		{
-			ft_strlcpy(array[entry], s[start], start - i);
+			ft_strlcpy(array[entry], &s[start], start - i);
 			start = i;
 			entry++;
 		}
 		i++;
 	}
-	ft_strlcpy(array[entry], s[start], ft_strlen(s) - start);
+	ft_strlcpy(array[entry], &s[start], ft_strlen(s) - start);
 }

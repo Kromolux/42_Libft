@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 16:42:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 12:15:54 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/09 16:30:33 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/09 16:38:02 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	void	*array;
+	int	i;
 
-	if (nmemb && size)
+	i = ft_lstsize(lst[0]) - 1;
+	while (i >= 0)
 	{
-		array = malloc(nmemb * size);
-		if (!array)
-			return (0);
-		ft_memset(array, 0, nmemb * size);
-		return (array);
+		del(lst[0][i].content);
+		free(lst[0[i].content]);
+		del(lst[0][i].next);
+		free(lst[0][i].next);
+		free(lst[0][i]);
+		i--;
 	}
-	else
-		return (0);
+	lst[0] = NULL;
 }

@@ -1,15 +1,7 @@
-#\norminette -R CheckForbiddenSourceHeader *.c *.h 			#check norminette
-#gcc -c -Wall -Wextra -Werror ft_isalpha.c ft_strlen.c 		#to compile without main
-#ar rc libft.a ft_isalpha.o ft_strlen.o 					#create library with .o files
-#ranlib libft.a 											#to create an index in the library
-#gcc main.c -L. -lft -Wall -Wextra -Werror -o test.out 		#compile with library to test functions
-
-NAME 		:= libft.a
-LIBFOLDER 	:= lib/
-OBJFOLDER 	:= obj/
-CC 			:= gcc
-HEADERFILES := libft.h
-SRCFILES 	:= ft_strlen.c \
+NAME 		:=	libft.a
+CC 			:=	gcc
+HEADERFILES :=	libft.h
+SRCFILES 	:=	ft_strlen.c \
 				ft_isalpha.c \
 				ft_isdigit.c \
 				ft_isalnum.c \
@@ -40,45 +32,43 @@ SRCFILES 	:= ft_strlen.c \
 				ft_strjoin.c \
 				ft_strtrim.c \
 				ft_itoa.c \
-				ft_split
-BONUSSRC		ft_latnew.c
+				ft_split.c \
+				ft_strmapi.c \
+				ft_striteri.c
+SRCBONUS	:=	ft_lstnew.c \
+				ft_lstadd_front.c \
+				ft_lstsize.c \
+				ft_lstlast.c \
+				ft_lstadd_back.c \
+				ft_lstdelone.c \
+				ft_lstclear.c
 OBJFILES 	:= $(SRCFILES:%.c=%.o)
-#PRE_OBJFILES := $(OBJFILES:%=$(OBJ)%)
+OBJBONUS	:= $(SRCBONUS:%.c=%.o)
 LDFLAGS 	?=
 CFLAGS 		?= -Wall -Wextra -Werror
 
-all: norminette $(NAME)
-
-norminette:
-	\norminette -R CheckForbiddenSourceHeader $(SRCFILES) $(HEADERFILES)
+all: $(NAME)
 
 $(NAME): $(OBJFILES)
 #	$(CC) $(LDFLAGS) -o $@ $^
-	@mkdir -p $(dir $(LIBFOLDER))
-	ar rc $(LIBFOLDER)$(NAME) $(OBJFILES:%=$(OBJFOLDER)%)
-#$(OBJFILES)
-	ranlib $(LIBFOLDER)$(NAME)
-	$(CC) main.c -L$(LIBFOLDER) -lft $(CFLAGS) -o test.out -lbsd
+	ar rc $(NAME) $(OBJFILES)
+	ranlib $(NAME)
 
-$(OBJFILES:%.o=$(OBJFOLDER)%): %.c $(HEADERFILES)
-	@mkdir -p $(dir $(OBJFOLDER))
+%.o: %.c $(HEADERFILES)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-bonus: $(BONUSSRC)
-	ar rc $(LIBFOLDER)$(NAME) $(BONUSSRC)
+bonus: $(OBJBONUS)
+	ar rc $(NAME) $(OBJBONUS)
+	ranlib $(NAME)
 
-$(BONUSSRC):%.o=: %.c $(HEADERFILES)
+%.o: %.c $(HEADERFILES)
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 clean: 
-	rm -f $(OBJFILES:%=$(OBJFOLDER)%)
-	@mkdir -p $(dir $(OBJFOLDER))
-	rmdir $(OBJFOLDER)
+	rm -f $(OBJFILES) $(OBJBONUS)
 
 fclean: clean
-	rm -f $(LIBFOLDER)$(NAME)
-	@mkdir -p $(dir $(LIBFOLDER))
-	rmdir $(LIBFOLDER)
+	rm -f $(NAME)
 
 re: fclean all
 

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 16:42:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 12:15:54 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/09 13:48:46 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/10 12:42:55 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	void	*array;
+	unsigned int	i;
 
-	if (nmemb && size)
+	if (s && f)
 	{
-		array = malloc(nmemb * size);
-		if (!array)
-			return (0);
-		ft_memset(array, 0, nmemb * size);
-		return (array);
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
 	}
-	else
-		return (0);
 }

@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 16:42:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 12:15:54 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/09 16:03:05 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/09 16:07:59 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+t_list	*ft_lstnew(void *content)
 {
-	void	*array;
+	t_list	*new_element;
 
-	if (nmemb && size)
-	{
-		array = malloc(nmemb * size);
-		if (!array)
-			return (0);
-		ft_memset(array, 0, nmemb * size);
-		return (array);
-	}
-	else
-		return (0);
+	new_element = malloc(sizeof(content) + sizeof(t_list));
+	ft_memcpy(new_element.content, content, sizeof(content));
+	new_element.next = NULL;
+	return (new_element);
 }

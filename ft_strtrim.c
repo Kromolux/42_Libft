@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 13:34:33 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/07 13:58:18 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/10 12:14:58 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	s1_end;
 
 	s1_len = ft_strlen(s1);
-
+	set_len = ft_strlen(set);
 	substring = malloc(s1_len + 1);
 	if (!substring)
 		return (0);
@@ -33,8 +33,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		s1_end = set_len;
 	else
 		s1_end = 0;
-
-	ft_memcpy(substring, s1[s1_start], s1_len - (s1_start + s1_end));
-
+	ft_memcpy(substring, (void *) &s1[s1_start], s1_len - (s1_start + s1_end));
 	return ((char *) substring);
 }

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 16:42:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 12:15:54 by rkaufman         ###   ########.fr       */
+/*   Created: 2021/12/09 13:43:22 by rkaufman          #+#    #+#             */
+/*   Updated: 2021/12/10 12:14:42 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	void	*array;
+	unsigned int	i;
+	char			*substring;
 
-	if (nmemb && size)
-	{
-		array = malloc(nmemb * size);
-		if (!array)
-			return (0);
-		ft_memset(array, 0, nmemb * size);
-		return (array);
-	}
-	else
+	substring = (char *) malloc(ft_strlen(s) + 1);
+	if (!s || !f || !substring)
 		return (0);
+	while (s[i])
+	{
+		substring[i] = f(i, s[i]);
+		i++;
+	}
+	substring[i] = '\0';
+	return (substring);
 }
