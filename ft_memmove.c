@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:57:58 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/11/27 12:56:40 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:42:54 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
-	if (n > 0 && dest != NULL && src != NULL)
+	if (n > 0)
 	{
 		i = 0;
 		if (dest < src)

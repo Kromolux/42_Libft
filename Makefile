@@ -49,6 +49,10 @@ CFLAGS 		?= -Wall -Wextra -Werror
 
 all: $(NAME)
 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCFILES)
+	$(CC) -shared -o libft.so $(OBJFILES)
+
 $(NAME): $(OBJFILES)
 #	$(CC) $(LDFLAGS) -o $@ $^
 	ar rc $(NAME) $(OBJFILES)

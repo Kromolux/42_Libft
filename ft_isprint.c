@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:04:40 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/11/23 09:43:16 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:44:05 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_isprint(int c)
 {
-	unsigned char	x;
+	char	x;
 
-	x = (unsigned char) c;
+	x = (char) c;
 	if (x >= ' ' && x <= '~')
 	{
 		return (16384);

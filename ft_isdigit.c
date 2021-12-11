@@ -6,15 +6,15 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 08:49:17 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/11/23 09:40:14 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/10 15:43:55 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	unsigned char	x;
+	char	x;
 
-	x = (unsigned char) c;
+	x = (char) c;
 	if (x >= '0' && x <= '9')
 	{
 		return (2048);
