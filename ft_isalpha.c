@@ -6,21 +6,13 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 21:47:44 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 15:43:21 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:42:00 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	char	x;
-
-	x = (char) c;
-	if ((x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z'))
-	{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:21:08 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/09 16:22:46 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:28:28 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	return (&lst[ft_lstsize - 1]);
+	return (&lst[ft_lstsize(lst) - 1]);
 }

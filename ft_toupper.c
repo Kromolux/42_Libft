@@ -6,21 +6,13 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:44:55 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 15:44:36 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:45:08 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
-	char	x;
-
-	x = (char) c;
-	if (x >= 'a' && x <= 'z')
-	{
-		return ((int)(x - (char) 32));
-	}
-	else
-	{
-		return (c);
-	}
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return (c);
 }

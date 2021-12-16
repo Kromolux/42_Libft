@@ -41,7 +41,9 @@ SRCBONUS	:=	ft_lstnew.c \
 				ft_lstlast.c \
 				ft_lstadd_back.c \
 				ft_lstdelone.c \
-				ft_lstclear.c
+				ft_lstclear.c \
+				ft_lstiter.c \
+				ft_lstmap.c
 OBJFILES 	:= $(SRCFILES:%.c=%.o)
 OBJBONUS	:= $(SRCBONUS:%.c=%.o)
 LDFLAGS 	?=
@@ -50,8 +52,8 @@ CFLAGS 		?= -Wall -Wextra -Werror
 all: $(NAME)
 
 so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCFILES)
-	$(CC) -shared -o libft.so $(OBJFILES)
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCFILES) $(SRCBONUS)
+	$(CC) -shared -o libft.so $(OBJFILES) $(OBJBONUS)
 
 $(NAME): $(OBJFILES)
 #	$(CC) $(LDFLAGS) -o $@ $^

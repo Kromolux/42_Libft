@@ -6,21 +6,13 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 09:52:44 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 15:45:11 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/11 20:45:23 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_tolower(int c)
 {
-	char	x;
-
-	x = (char) c;
-	if (x >= 'A' && x <= 'Z')
-	{
-		return ((int)(x + (char) 32));
-	}
-	else
-	{
-		return (c);
-	}
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
