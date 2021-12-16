@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 13:34:33 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/16 14:39:19 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/16 15:58:58 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 			if (s1[i_s1] != set[i_set])
 			{
 				((char *) substring)[i_sub] = s1[i_s1];
-				i_sub++;
+				i_sub++;+
 			}
 			i_set++;
 		}
