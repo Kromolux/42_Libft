@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 13:21:43 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 15:38:08 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:15:25 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const unsigned char	*ptr_src;
 	size_t				i;
 
+	if (!dest && !src)
+		return (0);
 	if (n > 0)
 	{
 		i = 0;

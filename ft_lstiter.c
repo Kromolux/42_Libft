@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 21:15:18 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/11 21:15:32 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:00:09 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-
+	if (lst && f)
+	{
+		
+	}
 }
