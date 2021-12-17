@@ -6,45 +6,48 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/17 16:43:55 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/17 18:36:59 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-static unsigned int	analyze_str(char const *s, char c, unsigned int *sub_len);
-static void			split_str(char const *s, char c, char **array);
+
+static unsigned int	analyze_str(char const *s, char c);
 
 char	**ft_split(char const *s, char c)
 {
-	unsigned int	i;
+	size_t	i;
+	size_t	start;
+	size_t	word_count;
 	unsigned int	size;
-	unsigned int	c_count;
 	char			**array;
 
 	if (!s)
 		return (0);
 	i = 0;
-	c_count = 0;
-	size = analyze_str(s, c, &c_count) + 1;
-	printf("size = %u\n", size);
-	printf("result of c_count = %u\n", c_count);
+	word_count = 0;
+	size = analyze_str(s, c) + 1;
 	array = (char **) malloc(size * sizeof(char *));
 	if (!array)
 		return (0);
-	while (i < size)
+	while (s[i])
 	{
-		array[i] = (char *) malloc(c_count + 1);
+		if (s[i] != c)
+		{
+			start = i;
+			while (s[i] && s[i] != c)
+				i++;
+			array[word_count] = ft_substr(s, start, i - start);
+			word_count++;
+			i--;
+		}
 		i++;
 	}
-	//if (!array)
-	//	return (0);
-	array[size - 1][0] = 0;
-	split_str(s, c, array);
+	array[word_count] = 0;
 	return (array);
 }
 
-static unsigned int	analyze_str(char const *s, char c, unsigned int *sub_len)
+static unsigned int	analyze_str(char const *s, char c)
 {
 	unsigned int	i;
 	unsigned int	c_count;
@@ -77,57 +80,86 @@ static unsigned int	analyze_str(char const *s, char c, unsigned int *sub_len)
 		}
 		i++;
 	}
-	*sub_len = c_max;
 	return (word_count);
 }
-
-static void	split_str(char const *s, char c, char **array)
+/*
+#include <stdio.h>
+int main(void)
 {
-	unsigned int	i_s;
-	unsigned int	i_word_array;
-	unsigned int	i_char;
-	unsigned int	word_flag;
-
-	i_s = 0;
-	i_word_array = 0;
-	i_char = 0;
-	word_flag = 0;
-	while (s[i_s])
-	{
-		if (s[i_s] != c)
-		{
-			array[i_word_array][i_char] = s[i_s];
-			word_flag = 1;
-			i_char++;
-		}
-		else
-		{
-			if (word_flag)
-			{
-				array[i_word_array][i_char] = '\0';
-				i_word_array++;
-				i_char = 0;
-			}
-			word_flag = 0;
-		}
-		i_s++;
-	}
-}
-
-int	main(void)
-{
-	char **expected = ft_split("\0aa\0bbb", '\0');
 	
-	printf("%s\n", *expected);
-
-	char *s = "split  ||this|for|me|||||!|";
+	char *string = "      split       this for   me  !       ";
+	char **result1 = ft_split(string, ' ');
 	int i = 0;
-	char **result = ft_split(s, '|');
-	while (*result)
+	while (result1[i])
 	{
-		printf("%s\n", result[i]);
+		printf("%s\n", result1[i]);
 		i++;
 	}
-	
+
+
+//[crash]: your split does not work with one word
+//Test code:
+	int i;
+	char *s1 = "                  olol";
+	char **result2 = ft_split(s1, ' ');
+
+	i = 0;
+	while (result2[i])
+	{
+		printf("%s\n", result2[i]);
+		i++;
+	}
+
+
+//[crash]: your split does not work with one word
+//Test code:
+	char *s2 = "olol                     ";
+	char **result3 = ft_split(s2, ' ');
+
+	i = 0;
+	while (result3[i])
+	{
+		printf("%s\n", result3[i]);
+		i++;
+	}
+
+
+//[crash]: your split will segfault in case --> *str="\0aa\0bbb" c='\0' 
+//Test code:
+	char **expected = ft_split("\0aa\0bbb", '\0');
+
+	i = 0;
+	while (expected[i])
+	{
+		printf("%s\n", expected[i]);
+		i++;
+	}
+
+
+//[crash]: your split does not work with basic input
+//Test code:
+	char *s3 = "split  ||this|for|me|||||!|";
+	char **result4 = ft_split(s3, '|');
+
+	i = 0;
+	while (result4[i])
+	{
+		printf("%s\n", result4[i]);
+		i++;
+	}
+
+//[crash]: your split does not work with basic input
+//Test code:
+	char *s4 = "      split       this for   me  !       ";
+
+	char **result5 = ft_split(s4, ' ');
+
+	i = 0;
+	while (result5[i])
+	{
+		printf("%s\n", result5[i]);
+		i++;
+	}
 	return (0);
 }
+*/

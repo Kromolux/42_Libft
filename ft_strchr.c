@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 09:57:35 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 15:37:05 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/17 17:21:00 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,13 @@ char	*ft_strchr(const char *s, int c)
 {
 	unsigned int	i;
 	unsigned int	s_len;
-	char			x;
-	char			*ptr;
 
 	i = 0;
-	s_len = ft_strlen(s);
-	x = (char) c;
-	while (i <= s_len)
+	s_len = ft_strlen(s) + 1;
+	while (i < s_len)
 	{
-		if (s[i] == x)
-		{
-			ptr = (char *) &s[i];
-			return (ptr);
-		}
+		if (s[i] == c)
+			return ((char *) &s[i]);
 		i++;
 	}
 	return (0);
