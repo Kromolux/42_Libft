@@ -6,53 +6,73 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 13:34:33 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/16 15:58:58 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:03:49 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int			ft_c_will_stay(char const c, char const *set);
+static char	const	*ft_find_start(char const *s1, char const *set);
+static char	const	*ft_find_end(char const *s1, char const *set);
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	void	*substring;
-	size_t	s1_len;
-	size_t	set_len;
-	size_t	i_s1;
-	size_t	i_set;
-	size_t	s1_start;
-	size_t	s1_end;
+	char		*substring;
+	char const	*sub_start;
+	char const	*sub_end;
+	size_t		sub_size;
 
 	if (!s1 || !set)
 		return (0);
-	i_s1 = 0;
-	s1_len = ft_strlen(s1);
-	set_len = ft_strlen(set);
-	substring = malloc(s1_len + 1);
+	sub_start = ft_find_start(s1, set);
+	sub_end = ft_find_end(s1, set);
+	sub_size = (size_t)(sub_end - sub_start) + 1;
+	substring = malloc(sub_size);
 	if (!substring)
 		return (0);
-	while (i_s1 < s1_len)
+	ft_strlcpy(substring, &s1[(size_t) (sub_start - s1)], sub_size);
+	return (substring);
+}
+
+static int	ft_c_will_stay(char const c, char const *set)
+{
+	size_t	i_set;
+	
+	i_set = 0;
+	while (set[i_set])
 	{
-		i_set = 0;
-		while (i_set < set_len)
-		{
-			if (s1[i_s1] != set[i_set])
-			{
-				((char *) substring)[i_sub] = s1[i_s1];
-				i_sub++;+
-			}
-			i_set++;
-		}
-		i_s1++;
+		if (c == set[i_set])
+			return (0);
+		i_set++;
 	}
-	if (ft_strncmp(s1, set, set_len) == 0)
-		s1_start = set_len;
-	else
-		s1_start = 0;
-	if (ft_strncmp(&s1[s1_len - set_len], set, set_len) == 0)
-		s1_end = set_len;
-	else
-		s1_end = 0;
-	ft_memcpy(substring, (void *) (&s1[s1_start]), s1_len - (s1_start + s1_end));
-	((char *) substring)[s1_len - (s1_start + s1_end)] = '\0';
-	return ((char *) substring);
+	return (1);
+}
+
+static char const	*ft_find_start(char const *s1, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i])
+	{
+		if (ft_c_will_stay(s1[i], set))
+			return (&s1[i]);
+		i++;
+	}
+	return (&s1[i]);
+}
+
+static char	const *ft_find_end(char const *s1, char const *set)
+{
+	size_t	i;
+
+	i = ft_strlen(s1) - 1;
+	while (i > 0)
+	{
+		if (ft_c_will_stay(s1[i], set))
+			return (&s1[i]);
+		i--;
+	}
+	return (&s1[i]);
 }

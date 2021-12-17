@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 13:43:22 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/16 10:54:15 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:20:38 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*substring;
 
+	if (!s || !f)
+		return (0);
 	substring = (char *) malloc(ft_strlen(s) + 1);
-	if (!s || !f || !substring)
+	if (!substring)
 		return (0);
 	i = 0;
 	while (s[i])

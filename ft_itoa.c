@@ -6,25 +6,30 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:17:16 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/10 12:44:38 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:43:31 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	ft_get_str_len(long n, int sign);
+
 char	*ft_itoa(int n)
 {
-	static char	output[12];
-	long		tmp;
-	int			i;
-	int			sign;
+	char	*output;
+	long	tmp;
+	int		i;
+	int		sign;
 
-	output[11] = '\0';
-	i = 10;
 	sign = 1;
 	if (n < 0)
 		sign = -1;
 	tmp = (long) n * sign;
+	i = ft_get_str_len(tmp, sign);
+	output = malloc(i + 1);
+	if (!output)
+		return (0);
+	output[i--] = '\0';
 	while (tmp > 9)
 	{
 		output[i] = (char)(tmp % 10) + '0';
@@ -33,9 +38,21 @@ char	*ft_itoa(int n)
 	}
 	output[i] = (char)(tmp % 10) + '0';
 	if (sign == -1)
-		output[i] = '-';
-	else
+		output[--i] = '-';
+	return (output);
+}
+
+static int	ft_get_str_len(long n, int sign)
+{
+	int	i;
+
+	i = 1;
+	while (n > 9)
+	{
+		n /= 10;
 		i++;
-	ft_memmove((void *) &output[0], (void *) &output[i], 12 - i);
-	return (&output[0]);
+	}
+	if (sign == -1)
+		i++;
+	return (i);
 }
