@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/18 21:49:02 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/20 14:47:07 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int main(void)
 
 //[crash]: your split does not work with one word
 //Test code:
-	int i;
+
 	char *s1 = "                  olol";
 	char **result2 = ft_split(s1, ' ');
 

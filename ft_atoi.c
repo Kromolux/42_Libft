@@ -6,9 +6,11 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:20:26 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/01 16:35:45 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/20 15:53:07 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 static int	check_whitespace(const char *str);
 static int	check_sign(const char *str, int *i_str);
@@ -45,27 +47,21 @@ static int	check_whitespace(const char *str)
 
 static int	check_sign(const char *str, int *i_str)
 {
-	int	count_minus;
 	int	sign;
 	int	i;
 
 	i = *i_str;
-	count_minus = 0;
 	sign = 0;
-	while (sign == 0)
-	{
-		if (str[i] == '-')
-			count_minus++;
-		else if (str[i] != '+')
-		{
-			count_minus = count_minus % 2;
-			if (count_minus == 0)
-				sign = 1;
-			else
-				sign = -1;
-		}
+	if (str[i] == '-')
+		sign = -1;
+	else if (str[i] == '+')
+		sign = 1;
+	else if (str[i] >= '0' && str[i] <= '9')
+		sign = 1;
+	else
+		sign = 0;
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	}
-	*i_str = --i;
+	*i_str = i;
 	return (sign);
 }
