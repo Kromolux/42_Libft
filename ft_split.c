@@ -6,30 +6,57 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/17 18:36:59 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:49:02 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static unsigned int	analyze_str(char const *s, char c);
+static void			ft_create_substrings(char const *s, char c, char **array);
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	start;
-	size_t	word_count;
-	unsigned int	size;
-	char			**array;
+	char	**array;
 
 	if (!s)
 		return (0);
-	i = 0;
-	word_count = 0;
-	size = analyze_str(s, c) + 1;
-	array = (char **) malloc(size * sizeof(char *));
+	array = (char **) malloc((analyze_str(s, c) + 1) * sizeof(char *));
 	if (!array)
 		return (0);
+	ft_create_substrings(s, c, array);
+	return (array);
+}
+
+static unsigned int	analyze_str(char const *s, char c)
+{
+	unsigned int	i;
+	unsigned int	word_count;
+
+	i = 0;
+	word_count = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			while (s[i] && s[i] != c)
+				i++;
+			word_count++;
+			i--;
+		}
+		i++;
+	}
+	return (word_count);
+}
+
+static void	ft_create_substrings(char const *s, char c, char **array)
+{
+	unsigned int	i;
+	unsigned int	start;
+	unsigned int	word_count;
+
+	i = 0;
+	word_count = 0;
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -43,45 +70,9 @@ char	**ft_split(char const *s, char c)
 		}
 		i++;
 	}
-	array[word_count] = 0;
-	return (array);
+	array[word_count] = NULL;
 }
 
-static unsigned int	analyze_str(char const *s, char c)
-{
-	unsigned int	i;
-	unsigned int	c_count;
-	unsigned int	c_max;
-	unsigned int	word_count;
-	unsigned int	word_flag;
-
-	i = 0;
-	c_count = 0;
-	c_max = 0;
-	word_count = 0;
-	word_flag = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			c_count++;
-			if (word_flag == 0)
-			{
-				word_flag = 1;
-				word_count++;
-			}
-		}
-		else
-		{
-			if (c_count > c_max)
-				c_max = c_count;
-			c_count = 0;
-			word_flag = 0;
-		}
-		i++;
-	}
-	return (word_count);
-}
 /*
 #include <stdio.h>
 int main(void)

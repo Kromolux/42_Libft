@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 13:34:33 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/17 17:38:47 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:24:24 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char const	*ft_find_start(char const *s1, char const *set)
 	return (&s1[i]);
 }
 
-static char	const *ft_find_end(char const *s1, char const *set)
+static char const	*ft_find_end(char const *s1, char const *set)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 15:17:16 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/17 13:43:31 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/18 21:07:05 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_itoa(int n)
 	}
 	output[i] = (char)(tmp % 10) + '0';
 	if (sign == -1)
-		output[--i] = '-';
+		output[0] = '-';
 	return (output);
 }
 
