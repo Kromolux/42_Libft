@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:30:30 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/05 12:02:04 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:05:11 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	if (little_len == 0)
 		return (ptr);
 	if (little_len > ft_strlen(big))
-		return (0);
+		return (NULL);
 	while (i + little_len <= len)
 	{
 		if (big[i] == little[0])
@@ -34,5 +34,5 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

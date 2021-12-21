@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 21:14:31 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/18 21:33:20 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:39:15 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,25 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (lst && f && del)
+	t_list	*new_element;
+	t_list	*first_element;
+
+	if (!lst || !f)
+		return (NULL);
+	new_element = ft_lstnew(f(lst->content));
+	if (!new_element)
+		return (NULL);
+	first_element = new_element;
+	while (lst->next)
 	{
-		
+		lst = lst->next;
+		new_element->next = ft_lstnew(f(lst->content));
+		if (!(new_element->next))
+		{
+			ft_lstclear(&first_element, del);
+			return (NULL);
+		}
+		new_element = new_element->next;
 	}
-	return (NULL);
+	return (first_element);
 }

@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:40:00 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/11/30 15:58:43 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:02:15 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 			return (&ptr[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/20 14:47:07 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 12:22:47 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	**ft_split(char const *s, char c)
 	char	**array;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	array = (char **) malloc((analyze_str(s, c) + 1) * sizeof(char *));
 	if (!array)
-		return (0);
+		return (NULL);
 	ft_create_substrings(s, c, array);
 	return (array);
 }

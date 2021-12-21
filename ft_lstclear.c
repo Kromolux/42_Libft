@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:30:33 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/11 20:32:37 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:31:26 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	int	i;
+	t_list	*first_element;
+	t_list	*next_element;
 
-	i = ft_lstsize(lst[0]) - 1;
-	while (i >= 0)
+	if (lst && del)
 	{
-		del(lst[0][i].content);
-		free(lst[0][i].content);
-		del(lst[0][i].next);
-		free(lst[0][i].next);
-		i--;
+		next_element = *lst;
+		while (next_element)
+		{
+			first_element = next_element;
+			next_element = next_element->next;
+			del(first_element->content);
+			free(first_element);
+		}
+		*lst = NULL;
 	}
-	lst[0] = NULL;
 }

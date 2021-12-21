@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 13:36:03 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/16 12:32:24 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/21 10:03:56 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ char	*ft_strdup(const char *s)
 		ft_strlcpy(ptr, s, s_len);
 		return (ptr);
 	}
-	return (0);
+	return (NULL);
 }
