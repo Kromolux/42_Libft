@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:19:09 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/21 10:16:05 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:02:53 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,3 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	t_list *l;
-	int actual;
-	int expected;
-
-	l = ft_lstnew(ft_strdup("1"));
-	l->next = ft_lstnew(ft_strdup("2"));
-	l->next->next = ft_lstnew(ft_strdup("3"));
-
-	actual = ft_lstsize(l);
-	printf("size of list = %i\n", actual);
-	return (0);
-}
-*/

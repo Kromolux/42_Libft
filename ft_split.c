@@ -6,7 +6,7 @@
 /*   By: rkaufman <rkaufman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 08:54:11 by rkaufman          #+#    #+#             */
-/*   Updated: 2021/12/21 12:22:47 by rkaufman         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:03:46 by rkaufman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,85 +72,3 @@ static void	ft_create_substrings(char const *s, char c, char **array)
 	}
 	array[word_count] = NULL;
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	
-	char *string = "      split       this for   me  !       ";
-	char **result1 = ft_split(string, ' ');
-	int i = 0;
-	while (result1[i])
-	{
-		printf("%s\n", result1[i]);
-		i++;
-	}
-
-
-//[crash]: your split does not work with one word
-//Test code:
-
-	char *s1 = "                  olol";
-	char **result2 = ft_split(s1, ' ');
-
-	i = 0;
-	while (result2[i])
-	{
-		printf("%s\n", result2[i]);
-		i++;
-	}
-
-
-//[crash]: your split does not work with one word
-//Test code:
-	char *s2 = "olol                     ";
-	char **result3 = ft_split(s2, ' ');
-
-	i = 0;
-	while (result3[i])
-	{
-		printf("%s\n", result3[i]);
-		i++;
-	}
-
-
-//[crash]: your split will segfault in case --> *str="\0aa\0bbb" c='\0' 
-//Test code:
-	char **expected = ft_split("\0aa\0bbb", '\0');
-
-	i = 0;
-	while (expected[i])
-	{
-		printf("%s\n", expected[i]);
-		i++;
-	}
-
-
-//[crash]: your split does not work with basic input
-//Test code:
-	char *s3 = "split  ||this|for|me|||||!|";
-	char **result4 = ft_split(s3, '|');
-
-	i = 0;
-	while (result4[i])
-	{
-		printf("%s\n", result4[i]);
-		i++;
-	}
-
-//[crash]: your split does not work with basic input
-//Test code:
-	char *s4 = "      split       this for   me  !       ";
-
-	char **result5 = ft_split(s4, ' ');
-
-	i = 0;
-	while (result5[i])
-	{
-		printf("%s\n", result5[i]);
-		i++;
-	}
-	return (0);
-}
-*/
