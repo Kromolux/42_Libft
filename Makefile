@@ -56,7 +56,6 @@ so:
 	$(CC) -shared -o libft.so $(OBJFILES) $(OBJBONUS)
 
 $(NAME): $(OBJFILES)
-#	$(CC) $(LDFLAGS) -o $@ $^
 	ar rc $(NAME) $(OBJFILES)
 	ranlib $(NAME)
 
